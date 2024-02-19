@@ -27,10 +27,10 @@ const App = () => {
 
       <AlertModal
         title="존재하지 않는 페이지입니다."
-        // description="다시 시도해주세요!"
+        description="다시 시도해주세요!"
         buttons={[
           {text: '확인', action: handleModalButtonPress},
-          // {text: '닫기', action: handleModalButtonPress},
+          {text: '닫기', action: handleModalButtonPress},
         ]}
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#555',
   },
   button: {
     backgroundColor: '#000',

@@ -11,7 +11,7 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 20,
     paddingVertical: 15,
-    paddingHorizontal: 25,
+    paddingHorizontal: 22,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -36,7 +36,8 @@ export default StyleSheet.create({
     alignItems: 'flex-end',
   },
   buttonClose: {
-    padding: 5,
+    paddingVertical: 5,
+    paddingHorizontal: 8,
   },
   textStyle: {
     color: '#007DCC',

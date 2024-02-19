@@ -26,6 +26,18 @@ const AlertModal = ({
   modalVisible,
   setModalVisible,
 }: AlertTypes) => {
+  // render
+  const renderButtonGroup = () => {
+    return buttons.map((item, index) => (
+      <TouchableOpacity
+        key={index}
+        style={[styles.buttonClose]}
+        onPress={item.action}>
+        <Text style={styles.textStyle}>{item.text}</Text>
+      </TouchableOpacity>
+    ));
+  };
+
   return (
     <Modal
       animationType="none"
@@ -44,16 +56,7 @@ const AlertModal = ({
             )}
           </View>
           {/* modal buttons */}
-          <View style={[styles.modalButton]}>
-            {buttons.map((item, index) => (
-              <TouchableOpacity
-                key={index}
-                style={[styles.buttonClose]}
-                onPress={() => item.action()}>
-                <Text style={styles.textStyle}>{item.text}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
+          <View style={[styles.modalButton]}>{renderButtonGroup()}</View>
         </View>
       </View>
     </Modal>
