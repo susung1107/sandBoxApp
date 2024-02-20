@@ -1,40 +1,29 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-
-// import components
-import AlertModal from './src/components/alertModal/AlertModal';
+import useAlertModal from './src/hooks/useAlert/useAlert';
 
 const App = () => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const {showAlert, AlertModal} = useAlertModal();
 
-  // alert 모달 오픈 함수
-  const openModal = () => {
-    setModalVisible(true);
-  };
-
-  // alert 모달 버튼 액션
-  const handleModalButtonPress = () => {
-    console.log('Button pressed');
-    setModalVisible(false);
+  const handleModal = () => {
+    showAlert('제목이구요', 'ㅁㄴㅇ', [
+      {
+        text: '확인',
+        action: () => console.log('확인'),
+      },
+      {
+        text: '취소',
+        action: () => console.log('취소'),
+      },
+    ]);
   };
 
   return (
     <View style={styles.centeredView}>
-      {/* Show Modal 버튼 */}
-      <TouchableOpacity style={[styles.button]} onPress={openModal}>
+      <AlertModal />
+      <TouchableOpacity style={[styles.button]} onPress={() => handleModal()}>
         <Text style={styles.textStyle}>Show Modal</Text>
       </TouchableOpacity>
-
-      <AlertModal
-        title="존재하지 않는 페이지입니다."
-        description="다시 시도해주세요!"
-        buttons={[
-          {text: '확인', action: handleModalButtonPress},
-          {text: '닫기', action: handleModalButtonPress},
-        ]}
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
-      />
     </View>
   );
 };
