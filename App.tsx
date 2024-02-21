@@ -1,48 +1,70 @@
-import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import useAlertModal from './src/hooks/useAlert/useAlert';
+import React, {useState, useEffect} from 'react';
+import {View, Text, StyleSheet} from 'react-native';
 
-const App = () => {
-  const {showAlert, AlertModal} = useAlertModal();
+// navigation
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-  const handleModal = () => {
-    showAlert('제목이구요', 'ㅁㄴㅇ', [
-      {
-        text: '확인',
-        action: () => console.log('확인'),
-      },
-      {
-        text: '취소',
-        action: () => console.log('취소'),
-      },
-    ]);
-  };
+// progress
+import * as Progress from 'react-native-progress';
+
+const Stack = createNativeStackNavigator();
+
+const HomeScreen = () => {
+  const [progress, setProgress] = useState(0);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(false);
+    const interval = setInterval(() => {
+      if (progress < 1.0) {
+        setProgress(progress + 0.01);
+        console.log(progress);
+      } else {
+        clearInterval(interval);
+        setLoading(true);
+      }
+    }, 0);
+
+    return () => clearInterval(interval);
+  }, [progress]);
 
   return (
-    <View style={styles.centeredView}>
-      <AlertModal />
-      <TouchableOpacity style={[styles.button]} onPress={() => handleModal()}>
-        <Text style={styles.textStyle}>Show Modal</Text>
-      </TouchableOpacity>
+    <View style={[styles.container]}>
+      <View style={[styles.progressContainer]}>
+        <Progress.Bar progress={progress} width={null} height={13} />
+      </View>
+      {loading && <Text>완료!</Text>}
     </View>
   );
 };
 
+const DetailsScreen = () => {
+  return (
+    <View>
+      <Text>DetailsScreen</Text>
+    </View>
+  );
+};
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Details" component={DetailsScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
 const styles = StyleSheet.create({
-  centeredView: {
+  container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#555',
+    paddingHorizontal: 16,
   },
-  button: {
-    backgroundColor: '#000',
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    borderRadius: 20,
-  },
-  textStyle: {
-    color: '#fff',
+  progressContainer: {
+    marginTop: 10,
   },
 });
 
