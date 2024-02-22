@@ -7,7 +7,9 @@
     "ios": "react-native run-ios --simulator='iPhone 15'",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "codepush:android": "appcenter codepush release-react -a susung1107/testApp_android -d Staging",
+    "codepush:ios": "appcenter codepush release-react -a susung1107/testApp_ios -d Staging"
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^4",
