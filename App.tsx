@@ -45,7 +45,7 @@ const HomeScreen = () => {
   return (
     <View style={[styles.container]}>
       <View style={[styles.progressContainer]}>
-        <Text style={[styles.containerTest]}>Code push Test</Text>
+        <Text style={[styles.containerTest]}>Code push Test!!!</Text>
       </View>
       {hasUpdate && syncProgress && (
         <SyncProgressView syncProgress={syncProgress} />
