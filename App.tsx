@@ -4,16 +4,24 @@ import {View, Text, StyleSheet} from 'react-native';
 // codepush
 import CodePush, {DownloadProgress, LocalPackage} from 'react-native-code-push';
 
+// datepicker
+import DatePicker from '@dietime/react-native-date-picker';
+
 // navigation
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 // components
 import SyncProgressView from './src/components/syncProgressView/SyncProgressView';
+import DateSelect from './src/components/DateSelect';
+import {COLORS} from './src/utils/Constants';
 
 const Stack = createNativeStackNavigator();
 
 const HomeScreen = () => {
+  // date
+  const [date, setDate] = useState(new Date());
+
   // codepush
   const [hasUpdate, setHasUpdate] = useState(true);
   const [syncProgress, setSyncProgress] = useState<DownloadProgress>();
@@ -47,6 +55,19 @@ const HomeScreen = () => {
       <View style={[styles.progressContainer]}>
         <Text style={[styles.containerTest]}>Code push Test</Text>
       </View>
+      {/* <DateSelect
+        itemFontSize={18}
+        itemHeight={45}
+        pointColor={COLORS.defaultColor.main}
+        pointBackgroundColor={COLORS.opacityColor.mint}
+      /> */}
+
+      <DatePicker
+        value={date}
+        onChange={value => setDate(value)}
+        format="yyyy-mm-dd"
+        markColor="#07ABB7"
+      />
       {hasUpdate && syncProgress && (
         <SyncProgressView syncProgress={syncProgress} />
       )}
