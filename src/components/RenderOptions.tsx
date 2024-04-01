@@ -63,7 +63,6 @@ const RenderOptions = ({
           <Text
             style={[
               styles.text,
-              // eslint-disable-next-line react-native/no-inline-styles
               {
                 fontFamily:
                   option === selectedValue ? FONTS.bold : FONTS.regular,
