@@ -48,7 +48,6 @@ const RenderOptions = ({
           key={index}
           style={[
             styles.option,
-            // eslint-disable-next-line react-native/no-inline-styles
             {
               backgroundColor:
                 option !== selectedValue

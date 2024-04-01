@@ -15,6 +15,7 @@ interface DateBlockProps {
   height: number;
   onChange: (type: string, digit: number) => void;
   dHeight: number;
+  pointColor?: string;
 }
 
 const DateBlock: React.FC<DateBlockProps> = ({
@@ -25,6 +26,7 @@ const DateBlock: React.FC<DateBlockProps> = ({
   height,
   onChange,
   dHeight,
+  pointColor,
 }) => {
   // scroll view Ref
   const scrollRef = useRef<ScrollView>(null);
@@ -65,7 +67,7 @@ const DateBlock: React.FC<DateBlockProps> = ({
                 style={[
                   styles.digit,
                   {
-                    color: el === value ? '#07ABB7' : '#666',
+                    color: el === value ? pointColor : '#777',
                     marginBottom:
                       index === digits.length - 1
                         ? height / 2 - dHeight / 2
@@ -99,9 +101,7 @@ const styles = StyleSheet.create({
     letterSpacing: -1,
     color: '#666',
     fontWeight: 'bold',
-  },
-  point: {
-    color: '#07ABB7',
+    paddingHorizontal: 20,
   },
 });
 

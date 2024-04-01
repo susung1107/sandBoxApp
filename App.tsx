@@ -11,10 +11,10 @@ const Stack = createNativeStackNavigator();
 const HomeScreen = () => {
   const [date, setDate] = useState(new Date());
 
-  const formatDate = (date: any) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
+  const formatDate = (value: Date) => {
+    const year = value.getFullYear();
+    const month = String(value.getMonth() + 1).padStart(2, '0');
+    const day = String(value.getDate()).padStart(2, '0');
     return `${year}년 ${month}월 ${day}일`;
   };
 
@@ -23,6 +23,9 @@ const HomeScreen = () => {
       <DatePicker
         value={date}
         onChange={(value: React.SetStateAction<Date>) => setDate(value)}
+        pointColor="#07ABB7"
+        startDate={new Date('2023-04-01')}
+        endDate={new Date('2025-11-01')}
       />
       <Text style={[styles.dateText]}>{formatDate(date)}</Text>
     </View>
