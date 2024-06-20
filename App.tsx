@@ -23,9 +23,7 @@ const HomeScreen = () => {
       <DatePicker
         value={date}
         onChange={(value: React.SetStateAction<Date>) => setDate(value)}
-        pointColor="#07ABB7"
-        startDate={new Date('2023-04-01')}
-        endDate={new Date('2025-11-01')}
+        pointColor="#ff5555"
       />
       <Text style={[styles.dateText]}>{formatDate(date)}</Text>
     </View>

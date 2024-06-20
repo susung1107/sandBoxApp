@@ -107,27 +107,15 @@ const DatePicker = ({
       new Date(today.getFullYear() + 10, today.getMonth(), today.getDate());
 
     const yearLength = _endDate.getFullYear() - _startDate.getFullYear() + 1;
-    const monthLength =
-      startDate && endDate
-        ? _endDate.getMonth() - _startDate.getMonth() + 1
-        : 12;
-
-    const dayLength =
-      startDate && endDate
-        ? _endDate.getDate() - _startDate.getDate() + 1
-        : new Date(selectedYear, selectedMonth, 0).getDate();
-
-    console.log(dayLength);
 
     const _years = Array.from(
       {length: yearLength},
       (_, index) => _startDate.getFullYear() + index,
     );
-    const _months = Array.from({length: monthLength}, (_, index) =>
-      startDate && endDate ? _startDate.getMonth() + 1 + index : index + 1,
-    );
-    const _days = Array.from({length: dayLength}, (_, index) =>
-      startDate && endDate ? _startDate.getDate() + index : index + 1,
+    const _months = Array.from({length: 12}, (_, index) => index + 1);
+    const _days = Array.from(
+      {length: new Date(selectedYear, selectedMonth, 0).getDate()},
+      (_, index) => index + 1,
     );
 
     setYears(_years);

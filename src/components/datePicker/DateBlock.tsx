@@ -67,7 +67,7 @@ const DateBlock: React.FC<DateBlockProps> = ({
                 style={[
                   styles.digit,
                   {
-                    color: el === value ? pointColor : '#777',
+                    color: el === value ? pointColor : '#666',
                     marginBottom:
                       index === digits.length - 1
                         ? height / 2 - dHeight / 2
